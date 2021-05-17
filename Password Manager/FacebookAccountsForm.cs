@@ -1,28 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Password_Manager
 {
-    public partial class GoogleAccountsForm : Form
+    public partial class FacebookAccountsForm : Form
     {
         private SqlConnection connection;
-        private String website;
-        public GoogleAccountsForm(string accountType)
+        public FacebookAccountsForm()
         {
             InitializeComponent();
             openConnection();
-            this.website = accountType;
-            this.headingLabel.Text = "Available " + accountType + " accounts";
             fillTable();
             accountsTable.CellClick += accountsTable_CellClick;
+        }
 
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var main = new MainScreen();
+            main.Closed += (s, args) => this.Close();
+            main.Show();
         }
 
         private void openConnection()
         {
-            this.connection = 
+            this.connection =
             new SqlConnection(Password_Manager.Properties.Resources.connectionString);
             try
             {
@@ -44,26 +54,32 @@ namespace Password_Manager
             if (e.ColumnIndex == accountsTable.Columns["Edit"].Index)
             {
                 String id = accountsTable.Rows[e.RowIndex].Cells[2].Value.ToString();
-                String emailQuery = string.Format("select email from {0} where id={1}", this.website, id);
+                String emailQuery = string.Format("select email from facebook where id={0}", id);
                 String email;
                 using (SqlCommand cmd = new SqlCommand(emailQuery, connection))
                 {
                     email = cmd.ExecuteScalar().ToString();
                 }
-                String passQuery = string.Format("select password from {0} where id={1}", this.website, id);
+                String passQuery = string.Format("select password from facebook where id={0}", id);
                 String pass;
                 using (SqlCommand cmd = new SqlCommand(passQuery, connection))
                 {
                     pass = cmd.ExecuteScalar().ToString();
                 }
-                String commentQuery = string.Format("select comments from {0} where id={1}", this.website, id);
+                String commentQuery = string.Format("select comments from facebook where id={0}", id);
                 String comment;
                 using (SqlCommand cmd = new SqlCommand(commentQuery, connection))
                 {
                     comment = cmd.ExecuteScalar().ToString();
                 }
+                String phoneQuery = string.Format("select phone from facebook where id={0}", id);
+                String phone;
+                using (SqlCommand cmd = new SqlCommand(phoneQuery, connection))
+                {
+                    phone = cmd.ExecuteScalar().ToString();
+                }
 
-                var editForm = new EditGoogleAccount(id, email, pass, comment, connection, website);
+                var editForm = new EditFbAccount(id, email, pass, comment, phone, connection);
                 editForm.FormClosed += editForm_FormClosed;
                 editForm.Show();
             }
@@ -75,7 +91,7 @@ namespace Password_Manager
                 if (dialogResult == DialogResult.Yes)
                 {
                     String id = accountsTable.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    String query = string.Format("delete from {0} where id={1}", this.website, id);
+                    String query = string.Format("delete from facebook where id={0}", id);
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
                         cmd.ExecuteNonQuery();
@@ -92,7 +108,7 @@ namespace Password_Manager
 
         private void fillTable()
         {
-            String query = string.Format("select * from {0} order by id", this.website);
+            String query = "select * from facebook order by id";
             using (SqlCommand cmd = new SqlCommand(query, connection))
             {
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
@@ -100,12 +116,12 @@ namespace Password_Manager
                 dataAdapter.Fill(ds);
 
                 this.accountsTable.DataSource = ds.Tables[0];
-                
+
 
                 DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
                 editButtonColumn.Name = "Edit";
                 editButtonColumn.Text = "EDIT";
-                int columnIndex = 4;
+                int columnIndex = 5;
                 if (accountsTable.Columns["Edit"] == null)
                 {
                     accountsTable.Columns.Insert(columnIndex, editButtonColumn);
@@ -114,7 +130,7 @@ namespace Password_Manager
                 DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
                 deleteButtonColumn.Name = "Delete";
                 deleteButtonColumn.Text = "DELETE";
-                columnIndex = 5;
+                columnIndex = 6;
                 if (accountsTable.Columns["Delete"] == null)
                 {
                     accountsTable.Columns.Insert(columnIndex, deleteButtonColumn);
@@ -128,24 +144,17 @@ namespace Password_Manager
             }
         }
 
-        private void newAccountButton_Click(object sender, EventArgs e)
-        {
-            var newForm = new AddNewGoogleAccount(connection, website);
-            newForm.FormClosed += newForm_FormClosed;
-            newForm.Show();
-        }
 
         private void newForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             fillTable();
         }
 
-        private void backButton_Click(object sender, EventArgs e)
+        private void newAccountButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var main = new MainScreen();
-            main.Closed += (s, args) => this.Close();
-            main.Show();
+            var newForm = new AddNewFbAccount(connection);
+            newForm.FormClosed += newForm_FormClosed;
+            newForm.Show();
         }
     }
 }

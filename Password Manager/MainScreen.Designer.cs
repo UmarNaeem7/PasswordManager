@@ -44,8 +44,8 @@
             this.gitButton = new System.Windows.Forms.Button();
             this.discordLabel = new System.Windows.Forms.Label();
             this.discordButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.miscLabel = new System.Windows.Forms.Label();
+            this.miscButton = new System.Windows.Forms.Button();
             this.twitterLabel = new System.Windows.Forms.Label();
             this.twitterButton = new System.Windows.Forms.Button();
             this.samsungLabel = new System.Windows.Forms.Label();
@@ -106,6 +106,7 @@
             this.fbButton.Size = new System.Drawing.Size(52, 50);
             this.fbButton.TabIndex = 4;
             this.fbButton.UseVisualStyleBackColor = true;
+            this.fbButton.Click += new System.EventHandler(this.fbButton_Click);
             // 
             // instaLabel
             // 
@@ -126,6 +127,7 @@
             this.instaButton.Size = new System.Drawing.Size(52, 50);
             this.instaButton.TabIndex = 6;
             this.instaButton.UseVisualStyleBackColor = true;
+            this.instaButton.Click += new System.EventHandler(this.instaButton_Click);
             // 
             // lineLabel
             // 
@@ -146,6 +148,7 @@
             this.lineButton.Size = new System.Drawing.Size(52, 50);
             this.lineButton.TabIndex = 12;
             this.lineButton.UseVisualStyleBackColor = true;
+            this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
             // 
             // icloudLabel
             // 
@@ -166,6 +169,7 @@
             this.icloudButton.Size = new System.Drawing.Size(50, 50);
             this.icloudButton.TabIndex = 10;
             this.icloudButton.UseVisualStyleBackColor = true;
+            this.icloudButton.Click += new System.EventHandler(this.icloudButton_Click);
             // 
             // gitLabel
             // 
@@ -186,6 +190,7 @@
             this.gitButton.Size = new System.Drawing.Size(50, 50);
             this.gitButton.TabIndex = 8;
             this.gitButton.UseVisualStyleBackColor = true;
+            this.gitButton.Click += new System.EventHandler(this.gitButton_Click);
             // 
             // discordLabel
             // 
@@ -206,26 +211,28 @@
             this.discordButton.Size = new System.Drawing.Size(52, 50);
             this.discordButton.TabIndex = 24;
             this.discordButton.UseVisualStyleBackColor = true;
+            this.discordButton.Click += new System.EventHandler(this.discordButton_Click);
             // 
-            // label2
+            // miscLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(512, 260);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 16);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "iCloud";
+            this.miscLabel.AutoSize = true;
+            this.miscLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miscLabel.Location = new System.Drawing.Point(519, 260);
+            this.miscLabel.Name = "miscLabel";
+            this.miscLabel.Size = new System.Drawing.Size(39, 16);
+            this.miscLabel.TabIndex = 23;
+            this.miscLabel.Text = "Misc.";
             // 
-            // button2
+            // miscButton
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Image = global::Password_Manager.Properties.Resources.icloud;
-            this.button2.Location = new System.Drawing.Point(515, 207);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 22;
-            this.button2.UseVisualStyleBackColor = true;
+            this.miscButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.miscButton.Image = global::Password_Manager.Properties.Resources.misc;
+            this.miscButton.Location = new System.Drawing.Point(515, 207);
+            this.miscButton.Name = "miscButton";
+            this.miscButton.Size = new System.Drawing.Size(50, 50);
+            this.miscButton.TabIndex = 22;
+            this.miscButton.UseVisualStyleBackColor = true;
+            this.miscButton.Click += new System.EventHandler(this.miscButton_Click);
             // 
             // twitterLabel
             // 
@@ -246,6 +253,7 @@
             this.twitterButton.Size = new System.Drawing.Size(50, 50);
             this.twitterButton.TabIndex = 20;
             this.twitterButton.UseVisualStyleBackColor = true;
+            this.twitterButton.Click += new System.EventHandler(this.twitterButton_Click);
             // 
             // samsungLabel
             // 
@@ -266,6 +274,7 @@
             this.samsungButton.Size = new System.Drawing.Size(52, 50);
             this.samsungButton.TabIndex = 18;
             this.samsungButton.UseVisualStyleBackColor = true;
+            this.samsungButton.Click += new System.EventHandler(this.samsungButton_Click);
             // 
             // outlookLabel
             // 
@@ -286,6 +295,7 @@
             this.outlookButton.Size = new System.Drawing.Size(67, 59);
             this.outlookButton.TabIndex = 16;
             this.outlookButton.UseVisualStyleBackColor = true;
+            this.outlookButton.Click += new System.EventHandler(this.outlookButton_Click);
             // 
             // netflixLabel
             // 
@@ -306,6 +316,7 @@
             this.netflixButton.Size = new System.Drawing.Size(50, 50);
             this.netflixButton.TabIndex = 14;
             this.netflixButton.UseVisualStyleBackColor = true;
+            this.netflixButton.Click += new System.EventHandler(this.netflixButton_Click);
             // 
             // MainScreen
             // 
@@ -314,8 +325,8 @@
             this.ClientSize = new System.Drawing.Size(800, 543);
             this.Controls.Add(this.discordLabel);
             this.Controls.Add(this.discordButton);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.miscLabel);
+            this.Controls.Add(this.miscButton);
             this.Controls.Add(this.twitterLabel);
             this.Controls.Add(this.twitterButton);
             this.Controls.Add(this.samsungLabel);
@@ -362,8 +373,8 @@
         private System.Windows.Forms.Button gitButton;
         private System.Windows.Forms.Label discordLabel;
         private System.Windows.Forms.Button discordButton;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label miscLabel;
+        private System.Windows.Forms.Button miscButton;
         private System.Windows.Forms.Label twitterLabel;
         private System.Windows.Forms.Button twitterButton;
         private System.Windows.Forms.Label samsungLabel;

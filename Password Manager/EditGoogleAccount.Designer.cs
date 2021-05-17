@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditGoogleAccount));
             this.headingLabel = new System.Windows.Forms.Label();
             this.emailLabel = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
@@ -136,6 +137,7 @@
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.headingLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditGoogleAccount";
             this.Text = "EditGoogleAccount";
             this.ResumeLayout(false);

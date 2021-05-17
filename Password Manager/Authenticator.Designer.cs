@@ -51,6 +51,7 @@
             this.pinTextBox.Name = "pinTextBox";
             this.pinTextBox.Size = new System.Drawing.Size(61, 29);
             this.pinTextBox.TabIndex = 1;
+            this.pinTextBox.UseSystemPasswordChar = true;
             // 
             // enterButton
             // 

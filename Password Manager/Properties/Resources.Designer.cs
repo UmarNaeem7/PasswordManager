@@ -162,6 +162,16 @@ namespace Password_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap misc {
+            get {
+                object obj = ResourceManager.GetObject("misc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap netflix {
             get {
                 object obj = ResourceManager.GetObject("netflix", resourceCulture);
