@@ -11,10 +11,10 @@ The Password Manager is a C# Windows application that helps users securely store
 ## Screenshots
 
 Main app screen:  
-<image src="/public/ss1.png">
+<image src="/public/ss1.png" width="400" height="200">
 
 List accounts:  
-<image src="/public/ss2.png">
+<image src="/public/ss2.png" width="400" height="200">
 
 Add/Edit account details:  
-<image src="/public/ss3.png">
+<image src="/public/ss3.png" width="400" height="200">
